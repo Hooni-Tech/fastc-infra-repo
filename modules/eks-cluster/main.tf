@@ -70,6 +70,14 @@ module "eks" {
   # eks configmap aws-auth에 콘솔 사용자 혹은 역할을 등록
   manage_aws_auth_configmap = true
 
+  aws_auth_roles = [
+    {
+      userarn  = "arn:aws:iam::582282256496:role/mhoonkim-admin"
+      username = "mhoonkim-admin"
+      groups   = ["system:masters"]
+    },
+  ]
+
   aws_auth_users = [
     {
       userarn  = "arn:aws:iam::582282256496:user/mhoonkim-eks"
