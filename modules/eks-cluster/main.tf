@@ -29,7 +29,7 @@ module "eks" {
   vpc_id     = local.vpc_id
   subnet_ids = local.private_subnets
 
-  # IRSA Enable / OIDC 구성
+  # IRSA Enable / OIDC(OpenID Connect Identity Provider) 구성
   enable_irsa = true
 
   node_security_group_additional_rules = {
