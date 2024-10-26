@@ -8,14 +8,17 @@ module "iam_assumable_role_alb_controller" {
   oidc_fully_qualified_subjects = ["system:serviceaccount:kube-system:aws-load-balancer-controller"]
 }
 
-
+## IAM 정책 변경해야했음
+## 예전 정책이라 ALB 타겟 연결 불가
+##https://github.com/kubernetes-sigs/aws-load-balancer-controller/blob/main/docs/install/iam_policy.json
 data "http" "iam_policy" {
-  url = "https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/v2.4.1/docs/install/iam_policy.json"
+  url = "https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/refs/heads/main/docs/install/iam_policy.json"
 }
 
 # 인라인으로 정책이 추가
 resource "aws_iam_role_policy" "controller" {
   name_prefix = "AWSLoadBalancerControllerIAMPolicy"
-  policy      = data.http.iam_policy.body
+  policy      = data.http.iam_policy.response_body
   role        = module.iam_assumable_role_alb_controller.iam_role_name
 }
+
