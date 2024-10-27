@@ -1,3 +1,5 @@
+#실행 방법 (sh -x 2-fluent-bit-cluster-info-configmap.sh)
+
 ClusterName=fast=cluster
 RegionName=ap-northeast-2
 FluentBitHttpPort='2020'
