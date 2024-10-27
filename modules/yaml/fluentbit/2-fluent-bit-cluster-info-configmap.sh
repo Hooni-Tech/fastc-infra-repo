@@ -1,4 +1,4 @@
-#실행 방법 (sh -x 2-fluent-bit-cluster-info-configmap.sh)
+#실행 방법 (sh -x 2-fluent-bit-cluster-info-configmap.sh) sh 파일은 apply 아님#
 
 ClusterName=fast=cluster
 RegionName=ap-northeast-2
