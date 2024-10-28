@@ -1,0 +1,8 @@
+문제 Pod 출력
+kubectl get pod -o jsonpath='{range .items[?(@.status.containerStatuses[0].state.waiting.reason=="ImagePullBackOff")]}{.metadata.name}{"\n"}{end}' | awk '{print "kubectl delete pod " $1}'
+
+출력 기준으로 스크립트 생성
+kubectl get pod -o jsonpath='{range .items[?(@.status.containerStatuses[0].state.waiting.reason=="ImagePullBackOff")]}{.metadata.name}{"\n"}{end}' | awk '{print "kubectl delete pod " $1}' > delete_script.sh
+
+스크립트 적용
+sh -x delete_script.sh

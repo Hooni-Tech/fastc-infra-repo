@@ -1,0 +1,9 @@
+[직접 값을 전달하여 생성]
+k create configmap --save-config test2-config --from-literal=app=pink --from-literal=connectionn.max=100
+k get cm test2-config -o yaml | yq .data
+(k get cm test2-config -o yaml | yq eval '.data' -)
+
+[파일에서 값을 참고하여 생성]
+k create configmap --save-config test3-config --from-file=nginx.conf
+k get cm test3-config -o yaml | yq .data
+(k get cm test3-config -o yaml | yq eval '.data' -)
